@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.editorconfig
+.gitignore
+.tool-versions
+Dockerfile
+LICENSE
+Makefile
+README.md
