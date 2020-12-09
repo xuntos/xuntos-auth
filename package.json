@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "lint": "eslint webpack.config.js src/**/*.js",
+    "lint": "eslint webpack.config.js src/**/*.js test/**/*.js",
     "test": "mocha test/**/*.test.js"
   },
   "repository": {
@@ -25,7 +25,10 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
+    "@babel/register": "^7.12.1",
     "babel-loader": "^8.2.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^7.15.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
@@ -33,6 +36,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "express": "^4.17.1",
     "mocha": "^8.2.1",
+    "regenerator-runtime": "^0.13.7",
     "webpack": "^5.10.0",
     "webpack-cli": "^4.2.0"
   }
