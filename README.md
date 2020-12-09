@@ -8,3 +8,4 @@
 |--|--|
 | `make build` | Build production application. |
 | `make lint` | Lint webpack.config.js and src files. |
+| `make run-tests` | Run mocha tests. |

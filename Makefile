@@ -3,3 +3,6 @@ build:
 
 lint:
 	@npm run lint
+
+run-tests:
+	@npm test
