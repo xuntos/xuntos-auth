@@ -1,4 +1,12 @@
-# xuntos authentication
+# xuntos auth
+
+xuntos authentication and authorization.
+
+## Environment Variables
+
+| Variable | Default | Description |
+|--|--|--|
+| `XUNTOS_AUTH_API_PORT` | `3000` | API port. |
 
 ## Development
 
