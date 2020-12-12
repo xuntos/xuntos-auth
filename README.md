@@ -7,6 +7,7 @@ xuntos authentication and authorization.
 | Variable | Default | Description |
 |--|--|--|
 | `XUNTOS_AUTH_API_PORT` | `3000` | API port. |
+| `XUNTOS_AUTH_LOGGER` | `"consoleDev"` | Logger type. |
 
 ## Development
 
