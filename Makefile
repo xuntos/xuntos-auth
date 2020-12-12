@@ -9,3 +9,6 @@ lint:
 
 run-tests:
 	@npm test
+
+watch:
+	@npm run watch

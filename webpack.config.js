@@ -1,4 +1,5 @@
 const path = require('path')
+const NodemonPlugin = require('nodemon-webpack-plugin')
 
 module.exports = {
   target: 'node',
@@ -7,6 +8,9 @@ module.exports = {
     filename: 'xuntos-auth.js',
     path: path.resolve(__dirname, 'dist')
   },
+  plugins: [
+    new NodemonPlugin()
+  ],
   module: {
     rules: [
       {
