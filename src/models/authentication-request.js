@@ -1,7 +1,13 @@
 import mongoose, { Schema } from 'mongoose'
+import { v4 as uuidv4 } from 'uuid'
 import { validateUserURI } from '../channels/utils'
 
 export const authenticationRequestSchema = new Schema({
+  uuid: {
+    type: String,
+    default: () => (uuidv4().toString()),
+    required: true
+  },
   userURI: {
     type: String,
     required: true,
