@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import { getChannel } from '../channels'
+import { validateUserURI } from '../channels/utils'
 
 export const userSchema = new Schema({
   uris: {
@@ -8,10 +8,7 @@ export const userSchema = new Schema({
         uri: {
           type: String,
           required: true,
-          validate: {
-            validator: value => (!!getChannel(value)),
-            message: ({ value }) => (`${value} is not a valid URI.`)
-          }
+          validate: validateUserURI
         },
         referencedAt: {
           type: Date,
