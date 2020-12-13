@@ -7,7 +7,7 @@ build:
 lint:
 	@npm run lint
 
-run-tests:
+tests:
 	@npm test
 
 watch:
