@@ -22,3 +22,4 @@ xuntos authentication and authorization.
 | `make tests` | Run mocha tests. |
 | `make watch` | Run development server. |
 | `make docker-run` | Run docker stack. |
+| `make docker-run-database` | Run docker database service. |

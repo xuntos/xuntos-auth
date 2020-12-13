@@ -13,5 +13,8 @@ tests:
 watch:
 	@npm run watch
 
+docker-run-%:
+	@docker-compose up --build $*
+
 docker-run:
 	@docker-compose up --build
