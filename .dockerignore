@@ -1,9 +1,13 @@
-node_modules/
 dist/
+node_modules/
 .editorconfig
+.eslintrc.yml
 .gitignore
+.mocharc.yml
 .tool-versions
+docker-compose.yml
 Dockerfile
+init-mongo.js
 LICENSE
 Makefile
 README.md
