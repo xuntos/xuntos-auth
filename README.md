@@ -21,3 +21,4 @@ xuntos authentication and authorization.
 | `make lint` | Lint webpack.config.js and src files. |
 | `make tests` | Run mocha tests. |
 | `make watch` | Run development server. |
+| `make docker-run` | Run docker stack. |
