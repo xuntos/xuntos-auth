@@ -8,6 +8,7 @@ xuntos authentication and authorization.
 |--|--|--|
 | `XUNTOS_AUTH_API_PORT` | `3000` | API port. |
 | `XUNTOS_AUTH_LOGGER` | `"consoleDev"` | Logger type. |
+| `XUNTOS_AUTH_DATABASE_URI` | `"mongodb://xuntos:xuntos@localhost:27017/xuntos-auth"` | Mongo database URI. |
 
 ## Development
 
