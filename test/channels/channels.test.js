@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { getChannel } from '../src/channels'
+import { getChannel } from '../../src/channels'
 
 describe('channels', () => {
   describe('getChannel()', () => {
