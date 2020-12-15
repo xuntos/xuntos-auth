@@ -41,6 +41,7 @@
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
     "mocha": "^8.2.1",
+    "mongodb-memory-server": "^6.9.2",
     "mongoose": "^5.11.7",
     "nodemon-webpack-plugin": "^4.3.2",
     "regenerator-runtime": "^0.13.7",
