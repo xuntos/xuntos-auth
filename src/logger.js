@@ -3,6 +3,7 @@ import config from './config'
 
 const loggerOpts = {
   consoleDev: {
+    level: 'debug',
     transports: [
       new winston.transports.Console()
     ],
