@@ -18,6 +18,11 @@ EXPOSE 3000
 
 WORKDIR /home/app
 
+COPY package.json .
+COPY package-lock.json .
+
+RUN npm install --only=prod
+
 COPY --from=builder /home/app/dist/xuntos-auth.js .
 
 ENTRYPOINT ["node", "/home/app/xuntos-auth.js"]

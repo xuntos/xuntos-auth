@@ -9,8 +9,10 @@ services:
       - 3000:3000
     depends_on:
       - database
+      - queue-redis
     environment:
       XUNTOS_AUTH_DATABASE_URI: mongodb://xuntos:xuntos@database:27017/xuntos-auth
+      XUNTOS_AUTH_QUEUE_REDIS_URL: redis://queue-redis:6379/0
 
   database:
     image: mongo:4.4
@@ -24,6 +26,10 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: xuntos
       MONGO_INITDB_DATABASE: xuntos-auth
 
+  queue-redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
 
 volumes:
   database-data:
