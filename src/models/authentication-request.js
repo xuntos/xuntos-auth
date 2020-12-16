@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import config from '../config'
 import { v4 as uuidv4 } from 'uuid'
 import { validateUserURI } from '../channels/utils'
 
@@ -21,6 +22,11 @@ export const authenticationRequestSchema = new Schema({
   requestedAt: {
     type: Date,
     default: Date.now,
+    required: true
+  },
+  validUntil: {
+    type: Date,
+    default: () => (new Date(new Date() + config.requestTTL * 60 * 1000)),
     required: true
   },
   validatedAt: {

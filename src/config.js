@@ -5,5 +5,6 @@ const getEnv = (key, defaultValue = null, cast = toString) => (cast(process.env[
 export default {
   apiPort: getEnv('API_PORT', 3000, parseInt),
   logger: getEnv('LOGGER', 'consoleDev'),
-  databaseURI: getEnv('DATABASE_URI', 'mongodb://xuntos:xuntos@localhost:27017/xuntos-auth')
+  databaseURI: getEnv('DATABASE_URI', 'mongodb://xuntos:xuntos@localhost:27017/xuntos-auth'),
+  requestTTL: getEnv('REQUEST_TTL', 30, parseInt)
 }
