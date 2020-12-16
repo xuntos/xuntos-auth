@@ -6,5 +6,6 @@ export default {
   apiPort: getEnv('API_PORT', 3000, parseInt),
   logger: getEnv('LOGGER', 'consoleDev'),
   databaseURI: getEnv('DATABASE_URI', 'mongodb://xuntos:xuntos@localhost:27017/xuntos-auth'),
-  authenticationRequestTTL: getEnv('AUTHENTICATION_REQUEST_TTL', 30, parseInt)
+  authenticationRequestTTL: getEnv('AUTHENTICATION_REQUEST_TTL', 30, parseInt),
+  queueRedisURL: getEnv('QUEUE_REDIS_URL', 'redis://localhost:6379/0')
 }
