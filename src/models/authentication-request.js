@@ -26,7 +26,7 @@ export const authenticationRequestSchema = new Schema({
   },
   validUntil: {
     type: Date,
-    default: () => (new Date(new Date() + config.requestTTL * 60 * 1000)),
+    default: () => (new Date(new Date() + config.authenticationRequestTTL * 60 * 1000)),
     required: true
   },
   validatedAt: {

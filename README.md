@@ -9,7 +9,7 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_API_PORT` | `3000` | API port. |
 | `XUNTOS_AUTH_LOGGER` | `"consoleDev"` | Logger type. |
 | `XUNTOS_AUTH_DATABASE_URI` | `"mongodb://xuntos:xuntos@localhost:27017/xuntos-auth"` | Mongo database URI. |
-| `XUNTOS_REQUEST_TTL` | `30` | Request time to live. (minutes) |
+| `XUNTOS_AUTHENTICATION_REQUEST_TTL` | `30` | Authentication request time to live. (minutes) |
 
 ## Development
 
