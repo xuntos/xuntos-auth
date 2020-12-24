@@ -4,7 +4,7 @@ const CHANNELS = {
   email
 }
 
-export const getChannel = (uri) => {
+export const getChannel = uri => {
   const Channel = Object
     .values(CHANNELS)
     .find(Channel => (Channel.regex.test(uri)))
