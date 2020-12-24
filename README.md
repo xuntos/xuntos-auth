@@ -11,6 +11,7 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_DATABASE_URI` | `"mongodb://xuntos:xuntos@localhost:27017/xuntos-auth"` | Mongo database URI. |
 | `XUNTOS_AUTH_AUTHENTICATION_REQUEST_TTL` | `30` | Authentication request time to live. (minutes) |
 | `XUNTOS_AUTH_QUEUE_REDIS_URL` | `"redis://localhost:6379/0"` | Queue Redis URL. |
+| `XUNTOS_AUTH_QUEUE_IS_WORKER` | `true` | Run with queue worker process. |
 
 ## Development
 
