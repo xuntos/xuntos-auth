@@ -7,7 +7,10 @@ import errorHandler from './handlers/error'
 
 const app = express()
 
-app.use(expressWinston.logger({ winstonInstance: logger }))
+app.use(expressWinston.logger({
+  winstonInstance: logger,
+  msg: '[express app] HTTP {{req.method}} {{req.url}}'
+}))
 app.use(bodyParser.json())
 app.use(router)
 app.use(errorHandler)

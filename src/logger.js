@@ -10,8 +10,7 @@ const loggerOpts = {
     format: winston.format.combine(
       winston.format.colorize(),
       winston.format.cli()
-    ),
-    msg: "HTTP {{req.method}} {{req.url}}"
+    )
   }
 }
 
