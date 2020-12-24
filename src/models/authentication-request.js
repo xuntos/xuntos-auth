@@ -1,7 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 import config from '../config'
 import { v4 as uuidv4 } from 'uuid'
+import logger from '../logger'
 import { validateUserURI } from '../channels/utils'
+import dispatchCodeQueue from '../queues/dispatch-code'
 
 export const authenticationRequestSchema = new Schema({
   uuid: {
@@ -34,6 +36,15 @@ export const authenticationRequestSchema = new Schema({
     default: null,
     required: false
   }
+})
+
+authenticationRequestSchema.pre('save', function (next) {
+  if (!this.isNew) return next()
+  next()
+  logger.debug(`pre save to authenticationRequestSchema: ${this.uuid}`, { authenticationRequest: this.toJSON() })
+  dispatchCodeQueue.createJob(this.toJSON())
+    .retries(2)
+    .save()
 })
 
 export default mongoose.model('AuthenticationRequest', authenticationRequestSchema)
