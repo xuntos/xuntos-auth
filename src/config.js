@@ -1,6 +1,6 @@
 const toString = value => (value.toString())
 
-const castBoolean = value => (['true', '1', 'y', 'yes'].includes(value.toLowerCase()))
+const castBoolean = value => (['true', '1', 'y', 'yes'].includes(value.toString().toLowerCase()))
 
 const getEnv = (key, defaultValue = null, cast = toString) => (cast(process.env[`XUNTOS_AUTH_${key}`] || defaultValue))
 
