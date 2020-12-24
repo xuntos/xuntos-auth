@@ -7,7 +7,11 @@ xuntos authentication and authorization.
 | Variable | Default | Description |
 |--|--|--|
 | `XUNTOS_AUTH_API_PORT` | `3000` | API port. |
-| `XUNTOS_AUTH_LOGGER` | `"consoleDev"` | Logger type. |
+| `XUNTOS_AUTH_LOGGER_PROFILE` | `"consoleDev"` | Logger profile. |
+| `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_ENABLE` | `false` | Enable logger HTTP transport. |
+| `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_HOST` | `"localhost"` | Logger HTTP transport host. |
+| `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PORT` | `8080` | Logger HTTP transport port. |
+| `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PATH` | `"/auth"` | Logger HTTP transport path. |
 | `XUNTOS_AUTH_DATABASE_URI` | `"mongodb://xuntos:xuntos@localhost:27017/xuntos-auth"` | Mongo database URI. |
 | `XUNTOS_AUTH_AUTHENTICATION_REQUEST_TTL` | `30` | Authentication request time to live. (minutes) |
 | `XUNTOS_AUTH_QUEUE_REDIS_URL` | `"redis://localhost:6379/0"` | Queue Redis URL. |
