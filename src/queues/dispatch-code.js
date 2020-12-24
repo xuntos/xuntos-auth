@@ -9,7 +9,7 @@ dispatchCodeQueue.process(async ({ data: authenticationRequest }) => {
   logger.info(`[dispatchCodeQueue] dispatching code to ${authenticationRequest}`, { authenticationRequest })
   const channel = getChannel(authenticationRequest.userURI)
   if (!channel) throw new Error(`Channel not found to ${authenticationRequest} user URI`)
-  await channel.dispatchCode()
+  await channel.dispatchCode(authenticationRequest)
 })
 
 dispatchCodeQueue.on('error', error => {

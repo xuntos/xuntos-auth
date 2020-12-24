@@ -11,7 +11,7 @@ export default class Channel {
     this.key = match.groups.key
   }
 
-  dispatchCode () {
+  dispatchCode (_authenticationRequest) {
     throw new NotImplemented(this.constructor.name, 'dispatchCode')
   }
 }
