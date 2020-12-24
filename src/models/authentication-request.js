@@ -41,7 +41,13 @@ export const authenticationRequestSchema = new Schema({
 authenticationRequestSchema.pre('save', function (next) {
   if (!this.isNew) return next()
   next()
-  logger.debug(`pre save to authenticationRequestSchema: ${this.uuid}`, { authenticationRequest: this.toJSON() })
+  logger.debug(
+    `pre save to authenticationRequestSchema: ${this.uuid}`,
+    {
+      type: 'authentication-request-schema-pre-save',
+      authenticationRequest: this.toJSON()
+    }
+  )
   dispatchCodeQueue.createJob(this.toJSON())
     .retries(2)
     .save()

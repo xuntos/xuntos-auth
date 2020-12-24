@@ -2,7 +2,13 @@ import logger from '../logger'
 import AuthenticationRequest from '../models/authentication-request'
 
 export default async (req, res, next) => {
-  logger.info(`request to authenticate: ${JSON.stringify(req.body)}`)
+  logger.info(
+    `request to authenticate: ${JSON.stringify(req.body)}`,
+    {
+      type: 'request-to-authenticate',
+      body: req.body
+    }
+  )
   const { userURI } = req.body || {}
   const authenticationRequest = new AuthenticationRequest({ userURI })
   try {
