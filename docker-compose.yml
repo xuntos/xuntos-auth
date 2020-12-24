@@ -10,9 +10,13 @@ services:
     depends_on:
       - database
       - queue-redis
+      - logstash
     environment:
       XUNTOS_AUTH_DATABASE_URI: mongodb://xuntos:xuntos@database:27017/xuntos-auth
       XUNTOS_AUTH_QUEUE_REDIS_URL: redis://queue-redis:6379/0
+      XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_ENABLE: "true"
+      XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_HOST: logstash
+      XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PORT: 8080
 
   database:
     image: mongo:4.4
