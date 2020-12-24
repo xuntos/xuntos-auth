@@ -22,6 +22,11 @@ export const userSchema = new Schema({
       message: () => ('URIs must be a list with a one item.')
     }
   },
+  displayName: {
+    type: String,
+    default: () => (`User${parseInt(Math.random() * 100000)}`),
+    required: true
+  },
   registeredAt: {
     type: Date,
     default: Date.now,
