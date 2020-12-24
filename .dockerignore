@@ -1,4 +1,6 @@
+dev-docker-stack-files/
 dist/
+logs/
 node_modules/
 .editorconfig
 .eslintrc.yml
@@ -7,7 +9,6 @@ node_modules/
 .tool-versions
 docker-compose.yml
 Dockerfile
-init-mongo.js
 LICENSE
 Makefile
 README.md
