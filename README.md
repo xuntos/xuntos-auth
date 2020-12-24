@@ -27,3 +27,4 @@ xuntos authentication and authorization.
 | `make docker-run` | Run docker stack. |
 | `make docker-run-database` | Run docker database service. |
 | `make docker-run-queue-redis` | Run docker queue Redis service. |
+| `make docker-run-logstash` | Run docker logstash service. |
