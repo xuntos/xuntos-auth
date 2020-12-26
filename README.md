@@ -8,7 +8,7 @@ xuntos authentication and authorization.
 |--|--|--|
 | `XUNTOS_AUTH_API_PORT` | `3000` | API port. |
 | `XUNTOS_AUTH_LOGGER_PROFILE` | `"consoleDev"` | Logger profile. |
-| `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_ENABLE` | `false` | Enable logger HTTP transport. |
+| `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_ENABLED` | `false` | Enabled logger HTTP transport. |
 | `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_HOST` | `"localhost"` | Logger HTTP transport host. |
 | `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PORT` | `8080` | Logger HTTP transport port. |
 | `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PATH` | `"/auth"` | Logger HTTP transport path. |
@@ -16,6 +16,8 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_AUTHENTICATION_REQUEST_TTL` | `30` | Authentication request time to live. (minutes) |
 | `XUNTOS_AUTH_QUEUE_REDIS_URL` | `"redis://localhost:6379/0"` | Queue Redis URL. |
 | `XUNTOS_AUTH_QUEUE_IS_WORKER` | `true` | Run with queue worker process. |
+| `XUNTOS_AUTH_CHANNELS_EMAIL_ENABLED` | `true` | Channel email enabled. |
+| `XUNTOS_AUTH_CHANNELS_EMAIL_SMTP_URI` | `smtps://xuntos:xuntos@smtp.xuntos.dgls.me:25` | Channel email SMTP URI. |
 
 ## Development
 

@@ -19,7 +19,7 @@ const loggerOpts = loggerOptsProfiles[config.logger.profile]
 
 const logger = winston.createLogger(loggerOpts)
 
-if (config.logger.httpTransport.enable) {
+if (config.logger.httpTransport.enabled) {
   logger.add(new winston.transports.Http({
     host: config.logger.httpTransport.host,
     port: config.logger.httpTransport.port,

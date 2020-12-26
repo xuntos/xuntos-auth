@@ -9,7 +9,7 @@ export default {
   logger: {
     profile: getEnv('LOGGER_PROFILE', 'consoleDev'),
     httpTransport: {
-      enable: getEnv('LOGGER_HTTP_TRANSPORT_ENABLE', false, castBoolean),
+      enabled: getEnv('LOGGER_HTTP_TRANSPORT_ENABLED', false, castBoolean),
       host: getEnv('LOGGER_HTTP_TRANSPORT_HOST', 'localhost'),
       port: getEnv('LOGGER_HTTP_TRANSPORT_PORT', 8080, parseInt),
       path: getEnv('LOGGER_HTTP_TRANSPORT_PATH', '/auth')
@@ -20,5 +20,13 @@ export default {
   queue: {
     redisURL: getEnv('QUEUE_REDIS_URL', 'redis://localhost:6379/0'),
     isWorker: getEnv('QUEUE_IS_WORKER', true, castBoolean)
+  },
+  channels: {
+    email: {
+      enabled: getEnv('CHANNELS_EMAIL_ENABLED', true, castBoolean),
+      smtp: {
+        uri: getEnv('CHANNELS_EMAIL_SMTP_URI', 'smtps://xuntos:xuntos@smtp.xuntos.dgls.me:25')
+      }
+    }
   }
 }
