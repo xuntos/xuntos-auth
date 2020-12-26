@@ -5,7 +5,7 @@ import EmailChannel from '../../src/channels/email'
 describe('EmailChannel', () => {
   describe('activated()', () => {
     describe('config.channels.email.enabled true', () => {
-      let enabled = config.channels.email.enabled
+      const enabled = config.channels.email.enabled
 
       beforeEach(() => {
         config.channels.email.enabled = true
@@ -21,7 +21,7 @@ describe('EmailChannel', () => {
     })
 
     describe('config.channels.email.enabled false', () => {
-      let enabled = config.channels.email.enabled
+      const enabled = config.channels.email.enabled
 
       beforeEach(() => {
         config.channels.email.enabled = false
