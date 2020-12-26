@@ -31,6 +31,14 @@ describe('channel', () => {
       })
     })
 
+    describe('#activated', () => {
+      it('throw NotImplemented', () => {
+        expect(() => {
+          Channel.activated()
+        }).to.throw('Channel.activated not implemented')
+      })
+    })
+
     describe('#dispatchCode', () => {
       it('throw NotImplemented', () => {
         const channel = new Channel('uri')
