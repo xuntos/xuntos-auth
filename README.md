@@ -17,7 +17,8 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_QUEUE_REDIS_URL` | `"redis://localhost:6379/0"` | Queue Redis URL. |
 | `XUNTOS_AUTH_QUEUE_IS_WORKER` | `true` | Run with queue worker process. |
 | `XUNTOS_AUTH_CHANNELS_EMAIL_ENABLED` | `true` | Channel email enabled. |
-| `XUNTOS_AUTH_CHANNELS_EMAIL_SMTP_URI` | `smtps://xuntos:xuntos@smtp.xuntos.dgls.me:25` | Channel email SMTP URI. |
+| `XUNTOS_AUTH_CHANNELS_EMAIL_SMTP_URI` | `"smtps://xuntos:xuntos@smtp.xuntos.dgls.me:25"` | Channel email SMTP URI. |
+| `XUNTOS_AUTH_CHANNELS_EMAIL_FROM` | `"no-reply@auth.xuntos.dgls.me"` | Email Channel email from address. |
 
 ## Development
 

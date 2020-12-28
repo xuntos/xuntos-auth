@@ -24,6 +24,7 @@ export default {
   channels: {
     email: {
       enabled: getEnv('CHANNELS_EMAIL_ENABLED', true, castBoolean),
+      from: getEnv('CHANNELS_EMAIL_FROM', 'no-reply@auth.xuntos.dgls.me'),
       smtp: {
         uri: getEnv('CHANNELS_EMAIL_SMTP_URI', 'smtps://xuntos:xuntos@smtp.xuntos.dgls.me:25')
       }
