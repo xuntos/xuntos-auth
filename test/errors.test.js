@@ -1,3 +1,5 @@
+import './support'
+
 import { expect } from 'chai'
 import { NotImplemented } from '../src/errors'
 

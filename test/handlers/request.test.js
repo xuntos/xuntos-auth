@@ -1,3 +1,5 @@
+import '../support'
+
 import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import mongoose from 'mongoose'

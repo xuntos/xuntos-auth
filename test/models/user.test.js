@@ -1,3 +1,5 @@
+import '../support'
+
 import { expect } from 'chai'
 import { Schema } from 'mongoose'
 import User, { userSchema } from '../../src/models/user'

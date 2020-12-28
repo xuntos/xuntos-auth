@@ -1,3 +1,5 @@
+import '../support'
+
 import { expect } from 'chai'
 import config from '../../src/config'
 import EmailChannel from '../../src/channels/email'
