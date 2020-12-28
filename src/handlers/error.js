@@ -11,15 +11,19 @@ export default (error, req, res, next) => {
     }
   )
   if (error instanceof Error.ValidationError) {
-    res.status(400).send({
-      success: false,
-      details: error.toString(),
-      ...error
-    })
+    res
+      .status(400)
+      .send({
+        success: false,
+        details: error.toString(),
+        ...error
+      })
   } else {
-    res.status(400).send({
-      success: false,
-      details: error.toString()
-    })
+    res
+      .status(400)
+      .send({
+        success: false,
+        details: error.toString()
+      })
   }
 }
