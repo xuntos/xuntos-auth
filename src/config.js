@@ -1,3 +1,5 @@
+import path from 'path'
+
 const toString = value => (value.toString())
 
 const castBoolean = value => (['true', '1', 'y', 'yes'].includes(value.toString().toLowerCase()))
@@ -29,5 +31,8 @@ export default {
         uri: getEnv('CHANNELS_EMAIL_SMTP_URI', 'smtps://xuntos:xuntos@smtp.xuntos.dgls.me:25')
       }
     }
+  },
+  i18n: {
+    localeDirectory: getEnv('I18N_LOCALES_DIRECTORY', path.join(__dirname, '../locales'))
   }
 }
