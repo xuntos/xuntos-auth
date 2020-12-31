@@ -2,6 +2,7 @@ import express from 'express'
 import expressWinston  from 'express-winston'
 import bodyParser from 'body-parser'
 import logger from './logger'
+import i18n from './i18n'
 import router from './router'
 import errorHandler from './handlers/error'
 
@@ -12,6 +13,7 @@ app.use(expressWinston.logger({
   msg: '[express app] HTTP {{req.method}} {{req.url}}'
 }))
 app.use(bodyParser.json())
+app.use(i18n.init)
 app.use(router)
 app.use(errorHandler)
 
