@@ -10,7 +10,10 @@ export default async (req, res, next) => {
     }
   )
   const { userURI } = req.body || {}
-  const authenticationRequest = new AuthenticationRequest({ userURI })
+  const authenticationRequest = new AuthenticationRequest({
+    userURI,
+    locale: req.locale
+  })
   try {
     await authenticationRequest.save()
     res

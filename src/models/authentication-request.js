@@ -16,6 +16,11 @@ export const authenticationRequestSchema = new Schema({
     required: true,
     validate: validateUserURI
   },
+  locale: {
+    type: String,
+    default: 'en',
+    required: true
+  },
   code: {
     type: String,
     default: () => ((Math.floor(Math.random() * 8999) + 1000).toString()),
