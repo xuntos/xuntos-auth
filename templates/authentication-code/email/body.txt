@@ -1,0 +1,4 @@
+{{ yourAuthenticationCode }} {{ code }}
+
+{{ footerMsg }}
+powered by xuntos auth
