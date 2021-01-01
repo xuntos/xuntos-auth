@@ -7,7 +7,7 @@ const dispatchCodeQueue = new BeeQueue('dispatch-code', queueBaseConfig)
 
 dispatchCodeQueue.process(async ({ data: authenticationRequest }) => {
   logger.info(
-    `[queue dispatch-code] dispatching code to ${authenticationRequest}`,
+    `[queue dispatch-code] dispatching code to ${authenticationRequest.uuid}`,
     {
       type: 'process-queue',
       queue: 'dispatch-code',
