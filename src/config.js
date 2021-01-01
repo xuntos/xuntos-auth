@@ -34,5 +34,6 @@ export default {
   },
   i18n: {
     localeDirectory: getEnv('I18N_LOCALES_DIRECTORY', path.join(__dirname, '../locales'))
-  }
+  },
+  templatesDirectory: getEnv('TEMPLATES_DIRECTORY', path.join(__dirname, '../templates'))
 }
