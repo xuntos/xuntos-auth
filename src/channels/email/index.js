@@ -63,7 +63,10 @@ export default class EmailChannel extends Channel {
     const mailInfo = await EmailChannel.getTransporter().sendMail(sendMailOpts)
     logger.info(
       `mail sent with authentication code to authentication request ${authenticationRequest.uuid}`,
-      { mailInfo }
+      {
+        type: 'email-channel-mail-sent',
+        mailInfo
+      }
     )
     return { success: true, mailInfo }
   }
