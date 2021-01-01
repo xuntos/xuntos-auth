@@ -1,4 +1,5 @@
 import { Error } from 'mongoose'
+import { snakeCase } from 'change-case'
 import logger from '../logger'
 
 export default (error, req, res, next) => {
@@ -10,20 +11,21 @@ export default (error, req, res, next) => {
       error
     }
   )
+  const minimalResponse = {
+    success: false,
+    type: snakeCase(error.name),
+    details: error.toString()
+  }
   if (error instanceof Error.ValidationError) {
     res
       .status(400)
       .send({
-        success: false,
-        details: error.toString(),
+        ...minimalResponse,
         ...error
       })
   } else {
     res
       .status(400)
-      .send({
-        success: false,
-        details: error.toString()
-      })
+      .send(minimalResponse)
   }
 }
