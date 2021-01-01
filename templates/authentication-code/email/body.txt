@@ -1,4 +1,5 @@
-{{ yourAuthenticationCode }} {{ code }}
+{{ yourAuthenticationCodeMsg }} {{ code }}
+{{ validUntilMsg }} {{ validUntil }}
 
 {{ footerMsg }}
 powered by xuntos auth

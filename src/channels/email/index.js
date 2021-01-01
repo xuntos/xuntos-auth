@@ -1,6 +1,7 @@
 import path from 'path'
 import { renderTemplateFile } from 'template-file'
 import nodemailer from 'nodemailer'
+import moment from 'moment'
 import Channel from '../channel'
 import config from '../../config'
 import i18n from '../../i18n'
@@ -21,8 +22,10 @@ export default class EmailChannel extends Channel {
   }
 
   async getSendMailOpts (authenticationRequest) {
+    const momentLocaled = moment(authenticationRequest.validUntil)
+    momentLocaled.locale(authenticationRequest.locale)
     const bodyTemplateData = {
-      yourAuthenticationCode: i18n.__({
+      yourAuthenticationCodeMsg: i18n.__({
         phrase: 'Your authentication code is:',
         locale: authenticationRequest.locale
       }),
@@ -30,7 +33,12 @@ export default class EmailChannel extends Channel {
       footerMsg: i18n.__({
         phrase: 'Use the authorization code to authenticate to the platform.',
         locale: authenticationRequest.locale
-      })
+      }),
+      validUntilMsg: i18n.__({
+        phrase: 'Code valid until:',
+        locale: authenticationRequest.locale
+      }),
+      validUntil: momentLocaled.format('LLL')
     }
     return {
       from: config.channels.email.from,
