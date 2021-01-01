@@ -1,3 +1,4 @@
 require:
   - 'regenerator-runtime'
   - '@babel/register'
+timeout: 20000
