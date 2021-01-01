@@ -29,7 +29,7 @@ describe('user', () => {
         it('invalid uri', () => {
           const user = new User({ uris: [{ uri: 'xuntos@dgls.me' }] })
           const validation = user.validateSync()
-          expect(validation.errors['uris.0.uri'].properties.message).to.be.equal('xuntos@dgls.me is not a valid URI.')
+          expect(validation.errors['uris.0.uri'].properties.message).to.be.equal('"xuntos@dgls.me" is not a valid URI.')
         })
       })
     })
