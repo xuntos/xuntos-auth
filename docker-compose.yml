@@ -17,6 +17,7 @@ services:
       XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_ENABLE: "true"
       XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_HOST: logstash
       XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PORT: 8080
+      XUNTOS_AUTH_CHANNELS_EMAIL_SMTP_URI: smtp://xuntos:xuntos@fake-smtp-server:5025
 
   database:
     image: mongo:4.4
@@ -42,6 +43,11 @@ services:
     volumes:
       - ./dev-docker-stack-files/logstash-pipeline/:/usr/share/logstash/pipeline/:ro
       - ./logs/:/var/logs/logstash/
+
+  fake-smtp-server:
+    image: gessnerfl/fake-smtp-server
+    ports:
+      - 5080:5080
 
 volumes:
   database-data:
