@@ -18,7 +18,8 @@ describe('handlers/create-authentication-request', () => {
       await mongod.getUri(),
       {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useCreateIndex: true
       }
     )
   })
