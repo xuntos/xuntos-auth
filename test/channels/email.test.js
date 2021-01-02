@@ -77,7 +77,7 @@ describe('EmailChannel', () => {
 
     it('expected success true', async () => {
       const r = await emailChannel.dispatchCode(authenticationRequest)
-      expect(r.success).to.be.true;
+      expect(r.success).to.be.true
       console.log(`see email: ${nodemailer.getTestMessageUrl(r.mailInfo)}`)
     })
   })
