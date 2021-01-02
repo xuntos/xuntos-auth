@@ -43,6 +43,12 @@ export const authenticationRequestSchema = new Schema({
   }
 })
 
+authenticationRequestSchema.index({
+  uuid: 3,
+  userURI: 2,
+  code: 1
+})
+
 authenticationRequestSchema.pre('save', function (next) {
   if (!this.isNew) return next()
   next()

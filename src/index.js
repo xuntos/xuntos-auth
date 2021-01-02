@@ -7,7 +7,8 @@ import config from './config'
     config.databaseURI,
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useCreateIndex: true
     }
   )
 
