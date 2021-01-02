@@ -13,7 +13,7 @@ export default (error, req, res, next) => {
   )
   const minimalResponse = {
     success: false,
-    type: snakeCase(error.name),
+    type: snakeCase(error.constructor.name),
     details: error.toString()
   }
   if (error instanceof Error.ValidationError) {
