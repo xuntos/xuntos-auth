@@ -9,7 +9,7 @@ import app from '../../src/app'
 chai.use(chaiHttp)
 chai.should()
 
-describe('handlers/request', () => {
+describe('handlers/create-authentication-request', () => {
   let mongod
 
   beforeEach(async () => {
@@ -28,12 +28,12 @@ describe('handlers/request', () => {
     await mongod.stop()
   })
 
-  describe('POST /request', () => {
+  describe('POST /authentication-request', () => {
     let response
 
     beforeEach(async () => {
       response = await chai.request(app)
-        .post('/request')
+        .post('/authentication-request')
         .type('json')
         .send({
           userURI: 'email:xuntos@dgls.me'

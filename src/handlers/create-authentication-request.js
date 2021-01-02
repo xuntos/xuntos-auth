@@ -3,9 +3,9 @@ import AuthenticationRequest from '../models/authentication-request'
 
 export default async (req, res, next) => {
   logger.info(
-    `request to authenticate: ${JSON.stringify(req.body)}`,
+    `authentication-request: ${JSON.stringify(req.body)}`,
     {
-      type: 'request-to-authenticate',
+      type: 'authentication-request',
       body: req.body
     }
   )
