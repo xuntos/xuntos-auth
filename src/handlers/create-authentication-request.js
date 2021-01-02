@@ -18,6 +18,7 @@ export default async (req, res, next) => {
     await authenticationRequest.save()
     res
       .status(201)
+      .set('Content-Location', `/authentication-request/${authenticationRequest.uuid}`)
       .send({
         ...authenticationRequest.toJSON(),
         code: undefined
