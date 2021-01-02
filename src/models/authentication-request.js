@@ -4,6 +4,10 @@ import { v4 as uuidv4 } from 'uuid'
 import logger from '../logger'
 import { validateUserURI } from '../channels/utils'
 import dispatchCodeQueue from '../queues/dispatch-code'
+import {
+  AuthenticationRequestAlreadyValidated,
+  AuthenticationRequestExpired
+} from '../errors'
 
 export const authenticationRequestSchema = new Schema({
   uuid: {
@@ -33,7 +37,7 @@ export const authenticationRequestSchema = new Schema({
   },
   validUntil: {
     type: Date,
-    default: () => (new Date(new Date() + config.authenticationRequestTTL * 60 * 1000)),
+    default: () => (new Date(Date.now() + config.authenticationRequestTTL * 60 * 1000)),
     required: true
   },
   validatedAt: {
@@ -49,19 +53,32 @@ authenticationRequestSchema.index({
   code: 1
 })
 
-authenticationRequestSchema.pre('save', function (next) {
-  if (!this.isNew) return next()
+authenticationRequestSchema._preSave = (authenticationRequest, next) => {
+  if (!authenticationRequest.isNew) return next()
   next()
   logger.debug(
-    `pre save to authenticationRequestSchema: ${this.uuid}`,
+    `pre save to authenticationRequestSchema: ${authenticationRequest.uuid}`,
     {
       type: 'authentication-request-schema-pre-save',
-      authenticationRequest: this.toJSON()
+      authenticationRequest: authenticationRequest.toJSON()
     }
   )
-  dispatchCodeQueue.createJob(this.toJSON())
+  dispatchCodeQueue.createJob(authenticationRequest.toJSON())
     .retries(2)
     .save()
+}
+
+authenticationRequestSchema.pre('save', function (next) {
+  authenticationRequestSchema._preSave(this, next)
 })
 
-export default mongoose.model('AuthenticationRequest', authenticationRequestSchema)
+const AuthenticationRequest = mongoose.model('AuthenticationRequest', authenticationRequestSchema)
+
+AuthenticationRequest.prototype.turnValidated = async function () {
+  if (this.validatedAt) throw new AuthenticationRequestAlreadyValidated()
+  if (this.validUntil < Date.now()) throw new AuthenticationRequestExpired()
+  this.validatedAt = Date.now()
+  await this.save()
+}
+
+export default AuthenticationRequest
