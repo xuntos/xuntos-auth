@@ -1,7 +1,13 @@
 import mongoose, { Schema } from 'mongoose'
+import { v4 as uuidv4 } from 'uuid'
 import { validateUserURI } from '../channels/utils'
 
 export const userSchema = new Schema({
+  uuid: {
+    type: String,
+    default: () => (uuidv4().toString()),
+    required: true
+  },
   uris: {
     type: [
       {
@@ -33,5 +39,7 @@ export const userSchema = new Schema({
     required: true
   }
 })
+
+userSchema.index({ uuid: 1 })
 
 export default mongoose.model('User', userSchema)
