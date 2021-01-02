@@ -4,6 +4,7 @@ import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import mongoose from 'mongoose'
 import MongoMemoryServer from 'mongodb-memory-server'
+import { v4 as uuidv4 } from 'uuid'
 import app from '../../src/app'
 import AuthenticationRequest from '../../src/models/authentication-request'
 
@@ -36,18 +37,32 @@ describe('handlers/retrieve-authentication-request', () => {
   describe('GET /authentication-request/:uuid', () => {
     let response
 
-    beforeEach(async () => {
-      response = await chai
-        .request(app)
-        .get(`/authentication-request/${authenticationRequest.uuid}`)
+    describe('existing authentication request', () => {
+      beforeEach(async () => {
+        response = await chai
+          .request(app)
+          .get(`/authentication-request/${authenticationRequest.uuid}`)
+      })
+
+      it('status code 200', () => {
+        response.should.have.status(200)
+      })
+
+      it('not render code', () => {
+        expect(response.body.code).to.be.undefined
+      })
     })
 
-    it('status code 200', () => {
-      response.should.have.status(200)
-    })
+    describe('not found', () => {
+      beforeEach(async () => {
+        response = await chai
+          .request(app)
+          .get(`/authentication-request/${uuidv4().toString()}`)
+      })
 
-    it('not render code', () => {
-      expect(response.body.code).to.be.undefined
+      it('status code 404', () => {
+        response.should.have.status(404)
+      })
     })
   })
 })
