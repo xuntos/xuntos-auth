@@ -21,6 +21,7 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_CHANNELS_EMAIL_FROM` | `"no-reply@auth.xuntos.dgls.me"` | Email Channel email from address. |
 | `XUNTOS_AUTH_I18N_LOCALES_DIRECTORY` | `"./locales"` | Locales Directory. |
 | `XUNTOS_AUTH_TEMPLATES_DIRECTORY` | `"./templates"` | Templates Directory. |
+| `XUNTOS_AUTH_JWT_PRIVATE_KEY_FILE_PATH` | `"./jwt-private.key"` | JWT private key RSA 4096 file path. |
 
 ## Development
 

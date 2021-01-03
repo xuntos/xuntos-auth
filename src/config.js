@@ -35,5 +35,8 @@ export default {
   i18n: {
     localeDirectory: getEnv('I18N_LOCALES_DIRECTORY', path.join(__dirname, '../locales'))
   },
-  templatesDirectory: getEnv('TEMPLATES_DIRECTORY', path.join(__dirname, '../templates'))
+  templatesDirectory: getEnv('TEMPLATES_DIRECTORY', path.join(__dirname, '../templates')),
+  jwt: {
+    privateKeyFilePath: getEnv('JWT_PRIVATE_KEY_FILE_PATH', path.join(__dirname, '../jwt-private.key'))
+  }
 }
