@@ -11,6 +11,7 @@ import {
   AuthenticationRequestExpired
 } from '../../src/errors'
 import User, { UserURI } from '../../src/models/user'
+import jwt from '../../src/jwt'
 
 chai.use(chaiAsPromised)
 
@@ -161,6 +162,45 @@ describe('authentication-request', () => {
           expect(retrievedUser).to.be.not.undefined
           expect(retrievedUser._id).to.be.not.null
         })
+      })
+    })
+
+    describe('#validateAndGetToken()', () => {
+      let mongod
+      let authenticationRequest
+      let sandbox
+
+      beforeEach(async () => {
+        mongod = new MongoMemoryServer()
+        await mongoose.connect(
+          await mongod.getUri(),
+          {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+            useCreateIndex: true
+          }
+        )
+        authenticationRequest = new AuthenticationRequest({ userURI: 'email:xuntos@dgls.me' })
+        await authenticationRequest.save()
+        sandbox = sinon.createSandbox()
+        sandbox
+          .stub(authenticationRequestSchema, '_preSave')
+          .callsFake((_, next) => { next() })
+      })
+
+      afterEach(async () => {
+        await mongoose.disconnect()
+        await mongod.stop()
+        sandbox.restore()
+      })
+
+      it('returns valid token and user', async () => {
+        const { token, user } = await authenticationRequest.validateAndGetToken()
+        expect(token).to.be.not.null
+        const out = jwt.verify(token)
+        expect(out).to.be.a('object')
+        expect(Object.keys(out)).to.be.deep.equal(['userUuid', 'iat'])
+        expect(out.userUuid).to.be.equals(user.uuid)
       })
     })
   })
