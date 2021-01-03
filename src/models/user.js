@@ -2,31 +2,33 @@ import mongoose, { Schema } from 'mongoose'
 import { v4 as uuidv4 } from 'uuid'
 import { validateUserURI } from '../channels/utils'
 
+export const userURISchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  uri: {
+    type: String,
+    required: true,
+    validate: validateUserURI
+  },
+  referencedAt: {
+    type: Date,
+    default: Date.now,
+    required: true
+  }
+})
+
+userURISchema.index({ uri: 1 })
+
+export const UserURI = mongoose.model('UserURI', userURISchema)
+
 export const userSchema = new Schema({
   uuid: {
     type: String,
     default: () => (uuidv4().toString()),
     required: true
-  },
-  uris: {
-    type: [
-      {
-        uri: {
-          type: String,
-          required: true,
-          validate: validateUserURI
-        },
-        referencedAt: {
-          type: Date,
-          default: Date.now,
-          required: true
-        }
-      }
-    ],
-    validate: {
-      validator: value => (Array.isArray(value) && value.length > 0),
-      message: () => ('URIs must be a list with a one item.')
-    }
   },
   displayName: {
     type: String,
@@ -42,4 +44,12 @@ export const userSchema = new Schema({
 
 userSchema.index({ uuid: 1 })
 
-export default mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema)
+
+User.findByURI = async (uri) => {
+  const userURI = await UserURI.findOne({ uri }).populate('user').exec()
+  if (!userURI) return null
+  return userURI.user
+}
+
+export default User
