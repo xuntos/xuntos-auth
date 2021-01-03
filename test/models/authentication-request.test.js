@@ -10,6 +10,7 @@ import {
   AuthenticationRequestAlreadyValidated,
   AuthenticationRequestExpired
 } from '../../src/errors'
+import User, { UserURI } from '../../src/models/user'
 
 chai.use(chaiAsPromised)
 
@@ -101,6 +102,64 @@ describe('authentication-request', () => {
 
         it('raise expired error', () => {
           expect(authenticationRequest.turnValidated()).to.eventually.throw(AuthenticationRequestExpired)
+        })
+      })
+    })
+
+    describe('#getOrCreateUserFromUserURI()', () => {
+      let mongod
+      let authenticationRequest
+      let sandbox
+
+      beforeEach(async () => {
+        mongod = new MongoMemoryServer()
+        await mongoose.connect(
+          await mongod.getUri(),
+          {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+            useCreateIndex: true
+          }
+        )
+        authenticationRequest = new AuthenticationRequest({
+          userURI: 'email:xuntos@dgls.me',
+          validatedAt: Date.now()
+        })
+        await authenticationRequest.save()
+        sandbox = sinon.createSandbox()
+        sandbox
+          .stub(authenticationRequestSchema, '_preSave')
+          .callsFake((_, next) => { next() })
+      })
+
+      afterEach(async () => {
+        await mongoose.disconnect()
+        await mongod.stop()
+        sandbox.restore()
+      })
+
+      describe('get exists user', () => {
+        let user
+
+        beforeEach(async () => {
+          user = await new User()
+          await user.save()
+          const userURI = new UserURI({ user: user._id, uri: 'email:xuntos@dgls.me' })
+          await userURI.save()
+        })
+
+        it('returns user', async () => {
+          const retrievedUser = await authenticationRequest.getOrCreateUserFromUserURI()
+          expect(retrievedUser).to.be.not.undefined
+          expect(retrievedUser._id.toString()).to.be.equals(user._id.toString())
+        })
+      })
+
+      describe('create user', () => {
+        it('returns new user', async () => {
+          const retrievedUser = await authenticationRequest.getOrCreateUserFromUserURI()
+          expect(retrievedUser).to.be.not.undefined
+          expect(retrievedUser._id).to.be.not.null
         })
       })
     })

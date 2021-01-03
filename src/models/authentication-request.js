@@ -8,6 +8,7 @@ import {
   AuthenticationRequestAlreadyValidated,
   AuthenticationRequestExpired
 } from '../errors'
+import User, { UserURI } from './user'
 
 export const authenticationRequestSchema = new Schema({
   uuid: {
@@ -79,6 +80,20 @@ AuthenticationRequest.prototype.turnValidated = async function () {
   if (this.validUntil < Date.now()) throw new AuthenticationRequestExpired()
   this.validatedAt = Date.now()
   await this.save()
+}
+
+AuthenticationRequest.prototype.getOrCreateUserFromUserURI = async function () {
+  if (!this.validatedAt) throw new Error('the authentication request has not been validated yet')
+  const user = await User.findByURI(this.userURI)
+  if (user) return user
+  const createdUser = new User()
+  await createdUser.save()
+  const userURI = new UserURI({
+    user: createdUser._id,
+    uri: this.userURI
+  })
+  await userURI.save()
+  return createdUser
 }
 
 export default AuthenticationRequest
