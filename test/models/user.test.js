@@ -56,13 +56,13 @@ describe('user', () => {
 
       it('found', async () => {
         const retrievedUser = await User.findByURI('email:xuntos@dgls.me')
-        expect(retrievedUser).to.be.not.null;
+        expect(retrievedUser).to.be.not.null
         expect(retrievedUser._id.toString()).to.be.equals(user._id.toString())
       })
 
       it('not found', async () => {
         const retrievedUser = await User.findByURI('email:xuntos-01@dgls.me')
-        expect(retrievedUser).to.be.null;
+        expect(retrievedUser).to.be.null
       })
     })
   })

@@ -68,7 +68,7 @@ describe('authentication-request', () => {
 
         it('fill validatedAt', async () => {
           await authenticationRequest.turnValidated()
-          expect(authenticationRequest.validatedAt).to.be.not.null;
+          expect(authenticationRequest.validatedAt).to.be.not.null
         })
       })
 
