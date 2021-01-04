@@ -1,9 +1,8 @@
-import '../support'
+import support from '../support'
 
 import chai, { expect } from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import mongoose, { Schema } from 'mongoose'
-import MongoMemoryServer from 'mongodb-memory-server'
+import { Schema } from 'mongoose'
 import sinon from 'sinon'
 import AuthenticationRequest, { authenticationRequestSchema } from '../../src/models/authentication-request'
 import {
@@ -35,19 +34,11 @@ describe('authentication-request', () => {
     })
 
     describe('#turnValidated()', () => {
-      let mongod
+      support.applyMongoMemoryServer()
+
       let sandbox
 
       beforeEach(async () => {
-        mongod = new MongoMemoryServer()
-        await mongoose.connect(
-          await mongod.getUri(),
-          {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-            useCreateIndex: true
-          }
-        )
         sandbox = sinon.createSandbox()
         sandbox
           .stub(authenticationRequestSchema, '_preSave')
@@ -55,8 +46,6 @@ describe('authentication-request', () => {
       })
 
       afterEach(async () => {
-        await mongoose.disconnect()
-        await mongod.stop()
         sandbox.restore()
       })
 
@@ -108,20 +97,12 @@ describe('authentication-request', () => {
     })
 
     describe('#getOrCreateUserFromUserURI()', () => {
-      let mongod
       let authenticationRequest
       let sandbox
 
+      support.applyMongoMemoryServer()
+
       beforeEach(async () => {
-        mongod = new MongoMemoryServer()
-        await mongoose.connect(
-          await mongod.getUri(),
-          {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-            useCreateIndex: true
-          }
-        )
         authenticationRequest = new AuthenticationRequest({
           userURI: 'email:xuntos@dgls.me',
           validatedAt: Date.now()
@@ -134,8 +115,6 @@ describe('authentication-request', () => {
       })
 
       afterEach(async () => {
-        await mongoose.disconnect()
-        await mongod.stop()
         sandbox.restore()
       })
 
@@ -166,20 +145,12 @@ describe('authentication-request', () => {
     })
 
     describe('#validateAndGetToken()', () => {
-      let mongod
       let authenticationRequest
       let sandbox
 
+      support.applyMongoMemoryServer()
+
       beforeEach(async () => {
-        mongod = new MongoMemoryServer()
-        await mongoose.connect(
-          await mongod.getUri(),
-          {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-            useCreateIndex: true
-          }
-        )
         authenticationRequest = new AuthenticationRequest({ userURI: 'email:xuntos@dgls.me' })
         await authenticationRequest.save()
         sandbox = sinon.createSandbox()
@@ -189,8 +160,6 @@ describe('authentication-request', () => {
       })
 
       afterEach(async () => {
-        await mongoose.disconnect()
-        await mongod.stop()
         sandbox.restore()
       })
 

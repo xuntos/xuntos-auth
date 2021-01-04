@@ -1,33 +1,14 @@
-import '../support'
+import support from '../support'
 
 import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
-import mongoose from 'mongoose'
-import MongoMemoryServer from 'mongodb-memory-server'
 import app from '../../src/app'
 
 chai.use(chaiHttp)
 chai.should()
 
 describe('handlers/create-authentication-request', () => {
-  let mongod
-
-  beforeEach(async () => {
-    mongod = new MongoMemoryServer()
-    await mongoose.connect(
-      await mongod.getUri(),
-      {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useCreateIndex: true
-      }
-    )
-  })
-
-  afterEach(async () => {
-    await mongoose.disconnect()
-    await mongod.stop()
-  })
+  support.applyMongoMemoryServer()
 
   describe('POST /authentication-request', () => {
     let response

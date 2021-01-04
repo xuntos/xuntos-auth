@@ -1,8 +1,7 @@
-import '../support'
+import support from '../support'
 
 import { expect } from 'chai'
-import mongoose, { Schema } from 'mongoose'
-import MongoMemoryServer from 'mongodb-memory-server'
+import { Schema } from 'mongoose'
 import User, { userSchema, UserURI } from '../../src/models/user'
 
 describe('user', () => {
@@ -30,28 +29,15 @@ describe('user', () => {
     })
 
     describe('.findByURI()', () => {
-      let mongod
       let user
 
+      support.applyMongoMemoryServer()
+
       beforeEach(async () => {
-        mongod = new MongoMemoryServer()
-        await mongoose.connect(
-          await mongod.getUri(),
-          {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-            useCreateIndex: true
-          }
-        )
         user = new User()
         await user.save()
         const userURI = new UserURI({ user: user._id, uri: 'email:xuntos@dgls.me' })
         await userURI.save()
-      })
-
-      afterEach(async () => {
-        await mongoose.disconnect()
-        await mongod.stop()
       })
 
       it('found', async () => {
