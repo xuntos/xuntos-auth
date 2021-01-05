@@ -1,4 +1,4 @@
-import { Error } from 'mongoose'
+import { Error as MongooseError } from 'mongoose'
 import { snakeCase } from 'change-case'
 import logger from '../logger'
 
@@ -16,7 +16,7 @@ export default (error, req, res, next) => {
     type: snakeCase(error.constructor.name),
     details: error.toString()
   }
-  if (error instanceof Error.ValidationError) {
+  if (error instanceof MongooseError.ValidationError) {
     res
       .status(400)
       .send({
@@ -25,7 +25,7 @@ export default (error, req, res, next) => {
       })
   } else {
     res
-      .status(400)
+      .status(error.statusCode || 400)
       .send(minimalResponse)
   }
 }
