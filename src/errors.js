@@ -23,6 +23,13 @@ export class Unauthorized extends Error {
   }
 }
 
+export class InvalidToken extends Error {
+  constructor () {
+    super('invalid token')
+    this.statusCode = 401
+  }
+}
+
 export class InvalidAuthenticationMethod extends Error {
   constructor () {
     super('invalid authentication method')
