@@ -18,7 +18,7 @@ export class AuthenticationRequestExpired extends Error {
 
 export class Unauthorized extends Error {
   constructor () {
-    super('Unauthorized')
+    super('unauthorized')
     this.statusCode = 401
   }
 }
