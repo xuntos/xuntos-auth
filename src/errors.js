@@ -15,3 +15,10 @@ export class AuthenticationRequestExpired extends Error {
     super('authentication request expired')
   }
 }
+
+export class Unauthorized extends Error {
+  constructor () {
+    super('Unauthorized')
+    this.statusCode = 401
+  }
+}
