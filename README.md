@@ -1,5 +1,7 @@
 # xuntos auth
 
+![Continuous Integration](https://github.com/xuntos/xuntos-auth/workflows/Continuous%20Integration/badge.svg)
+
 xuntos authentication and authorization.
 
 ## Environment Variables
