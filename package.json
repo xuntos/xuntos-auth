@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "lint": "eslint webpack.config.js src/**/*.js test/**/*.js",
-    "test": "mocha test/*.test.js test/**/*.test.js",
+    "test": "nyc mocha test/*.test.js test/**/*.test.js",
     "watch": "webpack --watch"
   },
   "repository": {
@@ -43,6 +43,7 @@
     "mocha": "^8.2.1",
     "mongodb-memory-server": "^6.9.2",
     "nodemon-webpack-plugin": "^4.3.2",
+    "nyc": "^15.1.0",
     "redis-mock": "^0.56.3",
     "regenerator-runtime": "^0.13.7",
     "sinon": "^9.2.2",
