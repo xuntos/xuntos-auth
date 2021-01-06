@@ -37,6 +37,7 @@ export default {
   },
   templatesDirectory: getEnv('TEMPLATES_DIRECTORY', path.join(__dirname, '../templates')),
   jwt: {
-    privateKeyFilePath: getEnv('JWT_PRIVATE_KEY_FILE_PATH', path.join(__dirname, '../jwt-private.key'))
+    privateKeyFilePath: getEnv('JWT_PRIVATE_KEY_FILE_PATH', path.join(__dirname, '../jwt-private.key')),
+    tokenExpiresIn: getEnv('JWT_TOKEN_EXPIRES_IN', '2h')
   }
 }

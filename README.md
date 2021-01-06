@@ -24,6 +24,7 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_I18N_LOCALES_DIRECTORY` | `"./locales"` | Locales Directory. |
 | `XUNTOS_AUTH_TEMPLATES_DIRECTORY` | `"./templates"` | Templates Directory. |
 | `XUNTOS_AUTH_JWT_PRIVATE_KEY_FILE_PATH` | `"./jwt-private.key"` | JWT private key RSA 4096 file path. |
+| `XUNTOS_AUTH_JWT_TOKEN_EXPIRES_IN` | `"2h"` | JWT expires in. Expressed in seconds or a string describing a time span [vercel/ms](https://github.com/vercel/ms). |
 
 ## Development
 
