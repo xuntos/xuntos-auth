@@ -1,7 +1,5 @@
-import { JsonWebTokenError } from 'jsonwebtoken'
 import {
   Unauthorized,
-  InvalidToken,
   InvalidAuthenticationMethod
 } from '../errors'
 import jwt from '../jwt'
@@ -13,15 +11,10 @@ const requireUser = (req) => {
 
 const authenticationMethodFns = {
   bearer: async token => {
-    try {
-      const { userUuid } = jwt.verify(token)
-      const user = await User.findOne({ uuid: userUuid }).exec()
-      if (!user) throw new Error('user not found')
-      return user
-    } catch (err) {
-      if (err instanceof JsonWebTokenError) throw new InvalidToken()
-      throw err
-    }
+    const { userUuid } = jwt.verify(token)
+    const user = await User.findOne({ uuid: userUuid }).exec()
+    if (!user) throw new Error('user not found')
+    return user
   }
 }
 
