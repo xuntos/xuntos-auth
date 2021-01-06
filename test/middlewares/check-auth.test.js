@@ -22,7 +22,7 @@ describe('middlewares/check-auth', () => {
         beforeEach(async () => {
           user = new User()
           user.save()
-          const token = jwt.sign({ userUuid: user.uuid })
+          const { token } = jwt.sign({ userUuid: user.uuid })
           response = await chai.request(app)
             .get('/users/me')
             .set({ authorization: `Bearer ${token}` })
@@ -60,7 +60,7 @@ describe('middlewares/check-auth', () => {
           let response
 
           beforeEach(async () => {
-            const token = jwt.sign({ userUuid: uuidv4().toString() })
+            const { token } = jwt.sign({ userUuid: uuidv4().toString() })
             response = await chai.request(app)
               .get('/users/me')
               .set({ authorization: `Bearer ${token}` })

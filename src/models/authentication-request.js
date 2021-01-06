@@ -100,8 +100,10 @@ AuthenticationRequest.prototype.getOrCreateUserFromUserURI = async function () {
 AuthenticationRequest.prototype.validateAndGetToken = async function () {
   await this.turnValidated()
   const user = await this.getOrCreateUserFromUserURI()
+  const { token, tokenExpirationDate } = jwt.sign({ userUuid: user.uuid })
   return {
-    token: jwt.sign({ userUuid: user.uuid }),
+    token,
+    tokenExpirationDate,
     user
   }
 }

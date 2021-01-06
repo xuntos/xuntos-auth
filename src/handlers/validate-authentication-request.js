@@ -7,7 +7,7 @@ export default async (req, res, next) => {
   const authenticationRequest = await AuthenticationRequest.findOne({ uuid, code }).exec()
   if (!authenticationRequest) return res.status(404).send()
   try {
-    const { token, user } = await authenticationRequest.validateAndGetToken()
+    const { token, tokenExpirationDate, user } = await authenticationRequest.validateAndGetToken()
     logger.info(
       `validate authentication request ${authenticationRequest.uuid} using code ${authenticationRequest.code}`,
       {
@@ -20,6 +20,7 @@ export default async (req, res, next) => {
       .status(200)
       .send({
         token,
+        tokenExpirationDate,
         user,
         authenticationRequest: authenticationRequest.toJSON()
       })

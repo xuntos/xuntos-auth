@@ -168,7 +168,7 @@ describe('authentication-request', () => {
         expect(token).to.be.not.null
         const out = jwt.verify(token)
         expect(out).to.be.a('object')
-        expect(Object.keys(out)).to.be.deep.equal(['userUuid', 'iat'])
+        expect(Object.keys(out)).to.be.deep.equal(['userUuid', 'iat', 'exp'])
         expect(out.userUuid).to.be.equals(user.uuid)
       })
     })
