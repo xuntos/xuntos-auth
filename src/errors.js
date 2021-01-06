@@ -30,6 +30,13 @@ export class InvalidToken extends Error {
   }
 }
 
+export class TokenExpired extends Error {
+  constructor () {
+    super('token expired')
+    this.statusCode = 401
+  }
+}
+
 export class InvalidAuthenticationMethod extends Error {
   constructor () {
     super('invalid authentication method')
