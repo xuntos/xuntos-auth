@@ -15,7 +15,7 @@ xuntos authentication and authorization.
 | `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PORT` | `8080` | Logger HTTP transport port. |
 | `XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PATH` | `"/auth"` | Logger HTTP transport path. |
 | `XUNTOS_AUTH_DATABASE_URI` | `"mongodb://xuntos:xuntos@localhost:27017/xuntos-auth"` | Mongo database URI. |
-| `XUNTOS_AUTH_AUTHENTICATION_REQUEST_TTL` | `30` | Authentication request time to live. (minutes) |
+| `XUNTOS_AUTH_AUTHENTICATION_REQUEST_TTL` | `30m` (30 minutes) | Authentication request time to live. Expressed in seconds or a string describing a time span [vercel/ms](https://github.com/vercel/ms). |
 | `XUNTOS_AUTH_QUEUE_REDIS_URL` | `"redis://localhost:6379/0"` | Queue Redis URL. |
 | `XUNTOS_AUTH_QUEUE_IS_WORKER` | `true` | Run with queue worker process. |
 | `XUNTOS_AUTH_CHANNELS_EMAIL_ENABLED` | `true` | Channel email enabled. |

@@ -1,4 +1,5 @@
 import path from 'path'
+import ms from 'ms'
 
 const toString = value => (value.toString())
 
@@ -18,7 +19,7 @@ export default {
     }
   },
   databaseURI: getEnv('DATABASE_URI', 'mongodb://xuntos:xuntos@localhost:27017/xuntos-auth'),
-  authenticationRequestTTL: getEnv('AUTHENTICATION_REQUEST_TTL', 30, parseInt),
+  authenticationRequestTTL: getEnv('AUTHENTICATION_REQUEST_TTL', '30m', ms),
   queue: {
     redisURL: getEnv('QUEUE_REDIS_URL', 'redis://localhost:6379/0'),
     isWorker: getEnv('QUEUE_IS_WORKER', true, castBoolean)
@@ -38,6 +39,6 @@ export default {
   templatesDirectory: getEnv('TEMPLATES_DIRECTORY', path.join(__dirname, '../templates')),
   jwt: {
     privateKeyFilePath: getEnv('JWT_PRIVATE_KEY_FILE_PATH', path.join(__dirname, '../jwt-private.key')),
-    tokenExpiresIn: getEnv('JWT_TOKEN_EXPIRES_IN', '2h')
+    tokenExpiresIn: getEnv('JWT_TOKEN_EXPIRES_IN', '2h', ms)
   }
 }

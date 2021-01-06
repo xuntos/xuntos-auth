@@ -3,7 +3,6 @@ import jsonwebtoken, {
   TokenExpiredError,
   JsonWebTokenError
 } from 'jsonwebtoken'
-import ms from 'ms'
 import config from './config'
 import {
   TokenExpired,
@@ -22,7 +21,7 @@ export default {
         expiresIn: config.jwt.tokenExpiresIn
       }
     ),
-    tokenExpirationDate: new Date(Date.now() + ms(config.jwt.tokenExpiresIn))
+    tokenExpirationDate: new Date(Date.now() + config.jwt.tokenExpiresIn)
   }),
   verify: token => {
     try {
