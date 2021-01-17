@@ -1,18 +1,16 @@
 import { Router } from 'express'
 import pingHandler from './handlers/ping'
-import createAuthenticationRequestHandler from './handlers/create-authentication-request'
-import retrieveAuthenticationRequestHandler from './handlers/retrieve-authentication-request'
-import validateAuthenticationRequestHandler from './handlers/validate-authentication-request'
-import userMeHandler from './handlers/user-me'
 import channelsHandler from './handlers/channels'
+import AuthenticationRequestHandler from './handlers/authentication-request'
+import UserHandler from './handlers/user'
 
 const router = Router()
 
 router.get('/ping', pingHandler)
 router.get('/channels', channelsHandler)
-router.post('/authentication-request', createAuthenticationRequestHandler)
-router.get('/authentication-request/:uuid', retrieveAuthenticationRequestHandler)
-router.post('/authentication-request/:uuid/validate', validateAuthenticationRequestHandler)
-router.get('/users/me', userMeHandler)
+router.post('/authentication-request', AuthenticationRequestHandler.create)
+router.get('/authentication-request/:uuidOrUserURI', AuthenticationRequestHandler.retrieve)
+router.post('/authentication-request/:uuidOrUserURI/validate', AuthenticationRequestHandler.validate)
+router.get('/users/me', UserHandler.me)
 
 export default router

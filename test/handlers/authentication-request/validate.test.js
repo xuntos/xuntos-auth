@@ -1,18 +1,18 @@
-import support from '../support'
+import support from '../../support'
 
 import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import { v4 as uuidv4 } from 'uuid'
-import app from '../../src/app'
-import AuthenticationRequest from '../../src/models/authentication-request'
+import app from '../../../src/app'
+import AuthenticationRequest from '../../../src/models/authentication-request'
 
 chai.use(chaiHttp)
 chai.should()
 
-describe('handlers/validate-authentication-request', () => {
+describe('handlers/authentication-request/validate', () => {
   support.applyMongoMemoryServer()
 
-  describe('POST /authentication-request/:uuid/validate', () => {
+  describe('POST /authentication-request/:uuidOrUserURI/validate', () => {
     describe('exists authentication request', () => {
       let authenticationRequest
 

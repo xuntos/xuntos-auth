@@ -1,13 +1,13 @@
-import support from '../support'
+import support from '../../support'
 
 import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
-import app from '../../src/app'
+import app from '../../../src/app'
 
 chai.use(chaiHttp)
 chai.should()
 
-describe('handlers/create-authentication-request', () => {
+describe('handlers/authentication-request/create', () => {
   support.applyMongoMemoryServer()
 
   describe('POST /authentication-request', () => {
