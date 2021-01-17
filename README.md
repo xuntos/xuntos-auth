@@ -1,6 +1,6 @@
 # xuntos auth
 
-![Continuous Integration](https://github.com/xuntos/xuntos-auth/workflows/Continuous%20Integration/badge.svg)
+![Continuous Integration](https://github.com/xuntos/xuntos-auth/workflows/Continuous%20Integration/badge.svg) ![Release](https://github.com/xuntos/xuntos-auth/workflows/Release/badge.svg)
 
 xuntos authentication and authorization.
 
