@@ -5,7 +5,7 @@ export default (req, res) => {
     getActivatedChannels()
       .map(Channel => ({
         _type: Channel._type,
-        regex: Channel.regex.toString()
+        regex: Channel.regex.source
       }))
   )
 }
