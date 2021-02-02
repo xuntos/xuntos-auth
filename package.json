@@ -1,6 +1,6 @@
 {
   "name": "xuntos-auth",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "xuntos auth: authentication and authorization",
   "main": "src/index.js",
   "scripts": {
