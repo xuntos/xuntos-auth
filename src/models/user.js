@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import { v4 as uuidv4 } from 'uuid'
 import { validateUserURI } from '../channels/utils'
+import jwt from '../jwt'
 
 export const userURISchema = new Schema({
   user: {
@@ -50,6 +51,10 @@ User.findByURI = async (uri) => {
   const userURI = await UserURI.findOne({ uri }).populate('user').exec()
   if (!userURI) return null
   return userURI.user
+}
+
+User.prototype.jwtSign = function () {
+  return jwt.sign({ userUuid: this.uuid })
 }
 
 export default User

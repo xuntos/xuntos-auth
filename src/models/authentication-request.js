@@ -9,7 +9,6 @@ import {
   AuthenticationRequestExpired
 } from '../errors'
 import User, { UserURI } from './user'
-import jwt from '../jwt'
 
 export const authenticationRequestSchema = new Schema({
   uuid: {
@@ -100,7 +99,7 @@ AuthenticationRequest.prototype.getOrCreateUserFromUserURI = async function () {
 AuthenticationRequest.prototype.validateAndGetToken = async function () {
   await this.turnValidated()
   const user = await this.getOrCreateUserFromUserURI()
-  const { token, tokenExpirationDate } = jwt.sign({ userUuid: user.uuid })
+  const { token, tokenExpirationDate } = user.jwtSign()
   return {
     token,
     tokenExpirationDate,
