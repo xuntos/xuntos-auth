@@ -57,7 +57,8 @@ export default class AuthenticationRequestHandler {
     const authenticationRequest = await AuthenticationRequestHandler.getAuthenticationRequest(uuidOrUserURI)
     if (!authenticationRequest) return res.status(404).send()
     try {
-      const { token, tokenExpirationDate, user } = await authenticationRequest.validateAndGetToken()
+      const { code } = req.body
+      const { token, tokenExpirationDate, user } = await authenticationRequest.validateAndGetToken(code)
       logger.info(
         `validate authentication request ${authenticationRequest.uuid} using code ${authenticationRequest.code}`,
         {

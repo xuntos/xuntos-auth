@@ -164,7 +164,7 @@ describe('authentication-request', () => {
       })
 
       it('returns valid token and user', async () => {
-        const { token, user } = await authenticationRequest.validateAndGetToken()
+        const { token, user } = await authenticationRequest.validateAndGetToken(authenticationRequest.code)
         expect(token).to.be.not.null
         const out = jwt.verify(token)
         expect(out).to.be.a('object')
