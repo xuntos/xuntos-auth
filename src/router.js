@@ -14,5 +14,6 @@ router.get('/authentication-request/:uuidOrUserURI', AuthenticationRequestHandle
 router.post('/authentication-request/:uuidOrUserURI/validate', AuthenticationRequestHandler.validate)
 router.get('/users/me', UserHandler.me)
 router.get('/tokens/validate', TokensHandler.validate)
+router.post('/tokens/refresh', TokensHandler.refresh)
 
 export default router

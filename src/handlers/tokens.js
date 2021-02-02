@@ -3,4 +3,9 @@ export default class TokensHandler {
     req.requireUser()
     res.send('OK')
   }
+
+  static async refresh (req, res) {
+    const user = await req.getUser()
+    res.send({ user: user, ...user.jwtSign() })
+  }
 }
