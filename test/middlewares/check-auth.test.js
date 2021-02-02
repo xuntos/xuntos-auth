@@ -31,6 +31,10 @@ describe('middlewares/check-auth', () => {
         it('returns 200 status code', () => {
           response.should.have.status(200)
         })
+
+        it('valid X-Xuntos-Auth-User-UUID header', () => {
+          response.should.have.header('X-Xuntos-Auth-User-UUID', user.uuid)
+        })
       })
     })
 
