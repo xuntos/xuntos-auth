@@ -6,7 +6,8 @@ import { validateUserURI } from '../channels/utils'
 import dispatchCodeQueue from '../queues/dispatch-code'
 import {
   AuthenticationRequestAlreadyValidated,
-  AuthenticationRequestExpired
+  AuthenticationRequestExpired,
+  InvalidAuthenticationRequestCode
 } from '../errors'
 import User, { UserURI } from './user'
 import jwt from '../jwt'
@@ -97,7 +98,8 @@ AuthenticationRequest.prototype.getOrCreateUserFromUserURI = async function () {
   return createdUser
 }
 
-AuthenticationRequest.prototype.validateAndGetToken = async function () {
+AuthenticationRequest.prototype.validateAndGetToken = async function (code) {
+  if (this.code !== code) throw new InvalidAuthenticationRequestCode()
   await this.turnValidated()
   const user = await this.getOrCreateUserFromUserURI()
   const { token, tokenExpirationDate } = jwt.sign({ userUuid: user.uuid })

@@ -54,8 +54,8 @@ describe('handlers/authentication-request/validate', () => {
             })
         })
 
-        it('returns 404 status code', () => {
-          response.should.have.status(404)
+        it('returns 406 status code', () => {
+          response.should.have.status(406)
         })
       })
     })
