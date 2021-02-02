@@ -11,7 +11,11 @@ tests:
 	@npm test
 
 watch:
-	@npm run watch
+	@XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_HOST=localhost \
+	 XUNTOS_AUTH_LOGGER_HTTP_TRANSPORT_PORT=8080 \
+	 XUNTOS_AUTH_DATABASE_URI=mongodb://xuntos:xuntos@localhost:27017/xuntos-auth \
+	 XUNTOS_AUTH_QUEUE_REDIS_URL=redis://localhost:6379/0 \
+	 npm run watch
 
 docker-run-%:
 	@docker-compose up --build $*
