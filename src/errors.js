@@ -43,3 +43,10 @@ export class InvalidAuthenticationMethod extends Error {
     this.statusCode = 401
   }
 }
+
+export class InvalidAuthenticationRequestCode extends Error {
+  constructor () {
+    super('invalid authentication request code')
+    this.statusCode = 406
+  }
+}
