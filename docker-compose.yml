@@ -48,6 +48,7 @@ services:
     image: gessnerfl/fake-smtp-server
     ports:
       - 5080:5080
+      - 5025:5025
 
 volumes:
   database-data:
